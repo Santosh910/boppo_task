@@ -1,15 +1,18 @@
 import productModel from "../models/product.model.js";
 
+
 export const createProd = async(req,res)=>{
     try{
-        const {name,price,category_id,description,categoryName}=req.body;
-        if(!name || !price || !category_id || !description || !categoryName)return res.status(401).json({success:false,message:"all data is mandotory"})
+        const {name,price,category_id,description}=req.body;
+        if(!name || !price || !category_id || !description )return res.status(401).json({success:false,message:"all data is mandotory"})
 
-        
+          
         const product = new productModel({
-            name,price,category_id,description,categoryName
+            name,price,category_id,description
         })
         await product.save()
+
+        
 
         return res.status(201).json({success:true,message:"product created successfully"})
     }catch(error){
@@ -46,10 +49,10 @@ export const createProd = async(req,res)=>{
 
  export const updateProd = async(req,res)=>{
     try{
-        const {name,price,category_id,description,categoryName,_id}=req.body;
-        if(!name || !price || !category_id || !description || !categoryName || !_id)return res.status(401).json({success:false,message:"all data is mandotory"})
+        const {name,price,category_id,description,_id}=req.body;
+        if(!name || !price || !category_id || !description || !_id)return res.status(401).json({success:false,message:"all data is mandotory"})
 
-        const update = await productModel.findByIdAndUpdate(_id,{name,price,category_id,description,categoryName})
+        const update = await productModel.findByIdAndUpdate(_id,{name,price,category_id,description})
         if(update){
             return res.status(201).json({success:true,message:"product updated successfully",update:update})
         }

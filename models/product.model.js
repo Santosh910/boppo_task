@@ -5,10 +5,12 @@ const product = new Schema({
     price:Number,
     description:String,
     categoryName:String,
+    
     category_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Category"
     }
+    
 })
 
 export default mongoose.model('Product',product)
