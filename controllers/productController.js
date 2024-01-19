@@ -92,7 +92,7 @@ export const getAllData = async (req,res)=>{
                     _id:1,
                     name:1,
                     price:1,
-                    category_id:{
+                    category:{
                         $arrayElemAt:
                         ["$category.name",0]
                     }
